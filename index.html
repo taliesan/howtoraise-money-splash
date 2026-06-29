@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RaiseMoney.ai — alpha</title>
+<meta name="description" content="The home base for the RaiseMoney.ai alpha: the tools you can use today, how each one is coming along, and notes on where it's all heading." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap');
+
+  :root {
+    --plum: #0a0c22;
+    --plum-card: #14172f;
+    --plum-line: rgba(255,255,255,0.08);
+    --paper: #ffffff;
+    --gold: #eeb240;
+    --gold-deep: #c68920;
+    --pink: #9a2360;
+    --ink-faint: #908aa6;
+    --ink-mid: #c5c0d6;
+    --green: #7fd6a3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--plum); color: var(--paper);
+    font-family: 'Jost', system-ui, sans-serif; font-weight: 300; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 26px; }
+  a { color: var(--gold); }
+
+  /* ---------- Masthead ---------- */
+  header.top { padding: 64px 0 34px; }
+  .brand { font-family: 'Arvo', serif; font-weight: 700; font-size: 30px; letter-spacing: -0.01em; }
+  .brand .ai { font-style: italic; color: var(--gold); font-weight: 400; }
+  .status-eyebrow { font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 16px; }
+  .intro { margin-top: 22px; font-size: 17px; color: var(--ink-mid); }
+  .intro p + p { margin-top: 13px; }
+  .intro strong { color: var(--paper); font-weight: 500; }
+
+  /* ---------- Section frames ---------- */
+  section { padding: 30px 0; border-top: 1px solid var(--plum-line); }
+  .kicker { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 22px; }
+
+  /* ---------- Updates feed ---------- */
+  .update { padding: 0 0 24px; margin-bottom: 24px; border-bottom: 1px dashed var(--plum-line); }
+  .update:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .update .date { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .update h3 { font-family: 'Arvo', serif; font-weight: 700; font-size: 18px; margin: 7px 0 9px; }
+  .update p { font-size: 15.5px; color: var(--ink-mid); }
+  .update p + p { margin-top: 10px; }
+
+  /* ---------- Tools ---------- */
+  .tool { padding: 22px 0; border-bottom: 1px solid var(--plum-line); }
+  .tool:last-child { border-bottom: none; }
+  .tool-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .tool-name { font-family: 'Arvo', serif; font-weight: 700; font-size: 21px; }
+  .tool-name .ai { font-style: italic; color: var(--gold); font-weight: 400; }
+  .tool-job { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-faint); }
+  .tag { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 4px 9px; border-radius: 11px; }
+  .tag-live { background: rgba(127,214,163,0.13); color: var(--green); border: 1px solid rgba(127,214,163,0.32); }
+  .tag-rough { background: rgba(238,178,64,0.13); color: var(--gold); border: 1px solid rgba(238,178,64,0.34); }
+  .tag-build { background: rgba(154,35,96,0.18); color: #e06aa0; border: 1px solid rgba(224,106,160,0.36); }
+  .tag-soon { background: rgba(150,138,166,0.14); color: var(--ink-mid); border: 1px solid rgba(150,138,166,0.34); }
+  .tool p { margin-top: 11px; font-size: 15.5px; color: var(--ink-mid); }
+  .tool p b { color: var(--paper); font-weight: 500; }
+  .tool .note { margin-top: 9px; font-size: 14px; color: var(--ink-faint); }
+  .tool .go { margin-top: 13px; display: inline-block; font-size: 14.5px; font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .tool .go:hover { border-color: var(--gold); }
+
+  /* ---------- Plain prose ---------- */
+  .prose p { font-size: 16px; color: var(--ink-mid); }
+  .prose p + p { margin-top: 13px; }
+  .prose b { color: var(--paper); font-weight: 500; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 30px 0 60px; border-top: 1px solid var(--plum-line); color: var(--ink-faint); font-size: 14.5px; }
+  footer a { text-decoration: none; border-bottom: 1px solid transparent; }
+  footer a:hover { border-color: var(--gold); }
+
+  @media (max-width: 600px) { header.top { padding: 46px 0 28px; } }
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <div class="status-eyebrow">Private alpha</div>
+      <div class="brand">RaiseMoney<span class="ai">.ai</span></div>
+      <div class="intro">
+        <p>
+          You're one of a small number of people I asked to try this early, so here's everything in one place:
+          <strong>the tools you can actually use today, how rough each one is, and notes on where the whole thing is going.</strong>
+        </p>
+        <p>
+          All of it is early and some of it will break. That's the point of having you here &mdash; please use it,
+          push on it, and tell me what's wrong. &mdash; Geoffrey
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!--
+      UPDATES FEED — to add a new note, copy one <article class="update"> block,
+      put it directly below this comment (newest first), and change the date + text.
+    -->
+    <section id="updates">
+      <div class="kicker">Updates</div>
+
+      <article class="update">
+        <div class="date">June 29, 2026</div>
+        <h3>The workspace is close to something you can live in</h3>
+        <p>
+          Spent the last stretch on the unglamorous parts &mdash; mobile text sizing, a real app icon, and the
+          backup system so nothing you put in can get lost. None of it is exciting, all of it is what makes a tool
+          trustworthy enough to use for real work.
+        </p>
+        <p>
+          If you've poked at RaiseMoney.ai already: the capture-and-coach loop works, the rough edges are mostly in
+          onboarding and the first-run experience. That's what I'm fixing next.
+        </p>
+      </article>
+
+      <article class="update">
+        <div class="date">June 18, 2026</div>
+        <h3>Where the tools stand</h3>
+        <p>
+          The textbook, the donor profiler, and the strategy tool are all usable right now. The workspace
+          (RaiseMoney.ai itself) is the newest and the most ambitious, and it's the one I most want your eyes on.
+          The rest of this page lays out exactly where each one is.
+        </p>
+      </article>
+
+    </section>
+
+    <section id="tools">
+      <div class="kicker">The tools</div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">How to Raise Money</span>
+          <span class="tool-job">The method, written down</span>
+          <span class="tag tag-live">Beta live</span>
+        </div>
+        <p>
+          The whole approach as a <b>field manual you can talk to</b>. Read it straight through, or tell it what
+          you're working on and it reshapes around you &mdash; compress a chapter to a page, prep for a donor call,
+          hand it a draft proposal for a read. Everything in it comes from people who've actually raised the money;
+          the AI just helps you use it.
+        </p>
+        <div class="note">Solid. This is the thinking the other three tools are built on &mdash; a good place to start.</div>
+        <a class="go" href="https://howtoraise-money-production.up.railway.app">Read it &rarr;</a>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">ProspectAI</span>
+          <span class="tool-job">Read the person</span>
+          <span class="tag tag-live">Beta live</span>
+        </div>
+        <p>
+          Give it a name and it does the deep reading for you, then hands back a read on <b>how that person
+          actually decides</b> &mdash; what draws them in, what makes them withdraw, the contradiction you can work
+          with. You get a full profile, a one-page briefing, and a guide for the room.
+        </p>
+        <div class="note">Works well. A full run does real research, so give it a few minutes rather than expecting an instant answer.</div>
+        <a class="go" href="https://prospectai-production.up.railway.app">Open ProspectAI &rarr;</a>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">StrategyAI</span>
+          <span class="tool-job">Shape the case</span>
+          <span class="tag tag-live">Beta live</span>
+        </div>
+        <p>
+          Bring your organization's materials and it drafts your <b>1-2-3</b> &mdash; five to choose from. Pick one,
+          sharpen it in conversation, grade it, then build it out into the implementation a proposal can stand on.
+          You can also <b>tune the 1-2-3 for a specific funder</b> &mdash; tell it who you're presenting to and it
+          shapes the strategy for that room.
+        </p>
+        <div class="note">Usable now. Feed it real documents (a deck, a plan, a campaign page) and it gets noticeably sharper.</div>
+        <a class="go" href="https://strategyai-production.up.railway.app">Open StrategyAI &rarr;</a>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">RaiseMoney<span class="ai">.ai</span></span>
+          <span class="tool-job">The workspace</span>
+          <span class="tag tag-build">Alpha</span>
+        </div>
+        <p>
+          The piece that pulls the rest together. Walk out of a meeting and <b>say what happened in plain language</b>;
+          it files the person, the commitment, the amount, the stage, and the next step &mdash; you never touch a
+          field &mdash; and tells you what to do next. A working memory and a coaching colleague in one.
+        </p>
+        <div class="note">
+          The newest and roughest of these, and the one your feedback matters most on. It's invite-only while
+          I build &mdash; if you don't have a login yet, ping me on Signal and I'll set you up.
+        </div>
+        <a class="go" href="https://raisemoney.ai">Go to the workspace &rarr;</a>
+      </div>
+
+      <div class="tool">
+        <div class="tool-head">
+          <span class="tool-name">The MCP</span>
+          <span class="tool-job">The whole thing, in your own AI</span>
+          <span class="tag tag-soon">Exploring</span>
+        </div>
+        <p>
+          An MCP server &mdash; the protocol that lets your own AI (Claude, ChatGPT, Cursor, whatever you use) reach
+          into an outside system as a native tool. The aim here is the most ambitious version of that: <b>all of
+          RaiseMoney.ai &mdash; the capture, the pipeline, the profiler, the strategy work &mdash; plus the entire
+          textbook running underneath as the brain, brought to bear on whatever you're actually doing in your own
+          chat.</b> You're working a donor, a proposal, a hard meeting; the whole method and every tool are right
+          there, applied to that, where you already think &mdash; instead of bouncing between separate apps.
+        </p>
+        <div class="note">
+          Earliest stage of the lot &mdash; I've worked out how to build it, but it isn't something you can use yet.
+          Listing it because it's where everything's pointed.
+        </div>
+      </div>
+
+    </section>
+
+    <section id="podcast">
+      <div class="kicker">The podcast</div>
+      <div class="tool" style="border-bottom:none;">
+        <div class="tool-head">
+          <span class="tool-name">Funders on Fundraising</span>
+          <span class="tool-job">Honest talk about how money moves</span>
+          <span class="tag tag-live">Listen</span>
+        </div>
+        <p>
+          Conversations about <b>power, trust, and how money actually moves in the nonprofit sector</b>. I co-host
+          it with Kelly James, a former funder &mdash; we sit down with the people who decide where resources flow
+          and the people who go and get them, and ask them what really earns a yes. Good company alongside everything else here.
+        </p>
+        <a class="go" href="https://intangible.ca/funders-on-fundraising-podcast/">Listen &mdash; Apple, Spotify, or the web &rarr;</a>
+      </div>
+    </section>
+
+    <section id="where" class="prose">
+      <div class="kicker">Where it's going</div>
+      <p>
+        Right now these are separate tools at separate addresses. The plan is to bring them into one: you talk
+        through a meeting, and the reading on the person, the strategy for the work, and the record of the
+        relationship all move together &mdash; no re-entering anything, no switching tabs.
+      </p>
+      <p>
+        <b>RaiseMoney.ai is where that's happening.</b> The other three already work on their own; over the next
+        while they fold into the workspace as the parts of one job rather than separate stops. One thing won't
+        change underneath it: the facts stay fixed and code-checked, the AI only ever interprets what a meeting
+        meant &mdash; it never invents the meeting, and it never makes the ask for you.
+      </p>
+      <p>
+        And if you're technical and want to get under the hood, I'm glad to share the git repos so you can see
+        exactly how any of this works. Just reach out.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    Found a bug, or have a thought? Message me on Signal &mdash; you've already got me there.
+    RaiseMoney.ai is a project of Aspiration.
+  </footer>
+
+</body>
+</html>
